@@ -1,9 +1,13 @@
-{% load static %}<!DOCTYPE html>
+{% extends "base.html" %} {% load static %} {% block content %}
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8" />
     <title>Blog</title>
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+    <link
+      rel="stylesheet"
+      href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}"
+    />
   </head>
   <body>
     <div class="container">
@@ -23,10 +27,12 @@
           {% for category in cat %}
           <tr>
             <td>
-              {{ category.name }}
-              <small class="text-muted d-block">{{
-                category.description
-              }}</small>
+              <a href="{% url 'category_articles' category.pk %}">
+                {{ category.name }}
+              </a>
+              <small class="text-muted d-block">
+                {{ category.description }}
+              </small>
             </td>
             <td class="align-middle">0</td>
             <td class="align-middle">0</td>
@@ -38,3 +44,4 @@
     </div>
   </body>
 </html>
+{% endblock %}

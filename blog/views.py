@@ -1,19 +1,20 @@
 from django.http import HttpResponse
 from .models import Category
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
-def home(request):
+def blog_home(request):
     cat = Category.objects.all()
-    return render(request, 'home.html', {'cat': cat})
+    return render(request, 'blog_home.html', {'cat': cat})
 
 def about(request):
     # do something...
     return render(request, 'about.html')
 
-def category_articles(request):
-    # do something...
-    return render(request, 'category_articles.html')
+def category_articles(request, pk):
+    cat = get_object_or_404(Category, pk=pk)
+    return render(request, 'articles.html', {'cat': cat})
+ 
 
 def about_company(request):
     # do something else...
